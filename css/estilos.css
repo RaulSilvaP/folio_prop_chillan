@@ -1,0 +1,59 @@
+.logo {
+	height: 90px;
+	width: 90px;
+	margin-top: -41px;
+	margin-bottom: 10px;
+	margin-right: 100px;
+}
+
+.titulo {
+	margin-left: 150px;
+	margin-top: -15px;
+}
+
+.exito {
+	display: none;
+}
+
+.enfacis {
+	font-size: 18px;
+}
+
+.logout {
+	font-size: 18px;
+	margin-left: 250px;
+}
+h1 {
+	margin-right: -100px;
+}
+.miformulario1 {
+	width: 500px;
+	height: 200px;
+}
+
+.titulo_certificado {
+	text-align: center;
+	border-bottom: 1px solid #D3CDCD;
+}
+
+#fecha_form {
+	width:100px;
+
+}
+
+.date-form { margin: 10px; }
+label.control-label span { cursor: pointer; }
+
+.help_data {
+	font-size: 10px;
+}
+
+#nuevo_folio {
+	display:none;
+}
+
+
+.ventana_personal{ 
+	width: 90%;
+	height: 80%;
+}
