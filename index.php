@@ -39,7 +39,7 @@
      <div class="container">
 
       <form class="form-signin" role="form" action="principal.php" method="post">
-        <h4 class="form-signin-heading">Acceso Folio Real: PROPIEDAD</h4>  
+        <h4 class="form-signin-heading">Acceso Folio Real: PROPIEDAD GIT</h4>  
         <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" required autofocus>
         <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit" id="login" name="login">Entrar</button><br>
