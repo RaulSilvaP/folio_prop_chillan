@@ -30,7 +30,7 @@ if($_REQUEST) {
     $litigio = $_REQUEST['litigio'];
 
 }
-echo $folio."<br>";
+echo "<br>".$folio."<br>";
 echo $tipo."<br>";
 echo $nombre."<br>";
 echo $fojas."<br>";
