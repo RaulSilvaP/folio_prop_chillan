@@ -35,7 +35,7 @@ h1 {
 	text-align: center;
 	border-bottom: 1px solid #D3CDCD;
 }
-
+ 
 #fecha_form {
 	width:100px;
 
@@ -57,3 +57,4 @@ label.control-label span { cursor: pointer; }
 	width: 90%;
 	height: 80%;
 }
+
