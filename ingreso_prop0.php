@@ -61,6 +61,7 @@ jQuery(function($) {
 
  
        if( fecha=="" || plantilla.getFullYear() == aho && plantilla.getMonth() == mes -1 && plantilla.getDate() == dia) {   //Si es correcta la fecha debe hacer lo siguiente:
+	        $('#msg_fecha').html('');
        }else{
        		//SI LA FECHA NO ES VALIDA
 	        $('#msg_fecha').html('<div id="Error" class="text-danger"><span class="glyphicon glyphicon-remove"></span> Fecha inconsistente</div>');
@@ -73,6 +74,18 @@ jQuery(function($) {
 
     
 });    
+
+
+function click_hipoteca () {
+	alert("Presionó botón Hipoteca");
+}
+function click_prohibicion () {
+	alert("Presionó botón Prohibición");
+}
+function click_tipo () {
+	alert("Presionó botón Agregar Tipo Inscripción");
+}
+
 </script>
 
 
@@ -105,7 +118,7 @@ jQuery(function($) {
 								<!-- Select Basic -->
 								<div class="form-group">
 									<label class="col-md-6 control-label" for="tipo">Tipo Inscripción</label>
-									<div class="col-md-6">
+									<div class="col-md-5 form-inline">
 										<select id="tipo" name="tipo" class="form-control">
 											<?php
 											while ($row1 = $result1->fetch_array()) 
@@ -116,6 +129,7 @@ jQuery(function($) {
 												<?php
 											} ?>
 										</select>
+											<button type="button" class="btn btn-primary btn-xs" onclick="click_tipo()">+</button>
 									</div>
 								</div>
 								<!-- Text input-->
@@ -215,8 +229,8 @@ jQuery(function($) {
 					<div class="col-md-4">
 						<button id="grabar" name="grabar" class="btn btn-success">Grabar</button>
 					</div>
-					<button id="boton_hipoteca" name="boton_hipoteca" class="btn btn-primary">Ingreso Hipoteca</button>
-					<button id="boton_prohibicion" name="boton_prohibicion" class="btn btn-primary">Ingreso Prohibicion</button>
+					<button type="button" id="boton_hipoteca" name="boton_hipoteca" class="btn btn-primary" onclick="click_hipoteca()">Ingreso Hipoteca</button>
+					<button type="button" id="boton_prohibicion" name="boton_prohibicion" class="btn btn-primary" onclick="click_prohibicion()">Ingreso Prohibicion</button>
 
 				</div>
 				<div class="datos"></div>
