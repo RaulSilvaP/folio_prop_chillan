@@ -10,7 +10,7 @@ $(document).ready(function(){
 			data: "usuario="+username+"&password="+password,
 		   success: function(html){    
 			if(html=='true')    {
-			 setTimeout("window.location='principal.php';",3000);
+			 setTimeout("window.location='principal.php';",1500);
 			}
 			else    {
 			setTimeout("$('#add_err').css('display', 'inline', 'important');",2000);
