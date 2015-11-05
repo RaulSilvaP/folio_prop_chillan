@@ -104,7 +104,7 @@ function click_tipo () {
 
 
 
-				<div class="row">
+				<div class="row well clearfixq">
 					<div class="col-md-16">
 						<!-- Text input-->
 						<div class="form-group">
@@ -229,17 +229,20 @@ function click_tipo () {
 					<div class="col-md-4">
 						<button id="grabar" name="grabar" class="btn btn-success">Grabar</button>
 					</div>
-					<button type="button" id="boton_hipoteca" name="boton_hipoteca" class="btn btn-primary" onclick="click_hipoteca()">Ingreso Hipoteca</button>
-					<button type="button" id="boton_prohibicion" name="boton_prohibicion" class="btn btn-primary" onclick="click_prohibicion()">Ingreso Prohibicion</button>
+					<button type="button" id="boton_hipoteca" name="boton_hipoteca" class="btn btn-primary" onclick="click_hipoteca()">Agregar Hipoteca</button>
+					<button type="button" id="boton_prohibicion" name="boton_prohibicion" class="btn btn-primary" onclick="click_prohibicion()">Agregar Prohibicion</button>
 
 				</div>
 				<div class="datos"></div>
 
+ 
 
 
+<div class="container miformulario"> 
 
+	<h3>Datos grabados</h3>
 
-
+</div>
 
 
 			</fieldset>
