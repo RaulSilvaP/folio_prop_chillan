@@ -1,6 +1,6 @@
 <?php
-include "conexion/folio.php";
-if(isset($_GET['id'])){
+include ("conexion/folio.php");
+if(isset($_GET['id_propiedad'])){
 $stmt = $conn->prepare("update propiedad set folio=?, nombre=? where id_propiedad=?");
 $stmt->bind_param('sss', $nm, $gd, $id);
 

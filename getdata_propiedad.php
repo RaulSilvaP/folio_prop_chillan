@@ -5,14 +5,14 @@
 <table class="table table-bordered table-hover">
 	<thead>
 	  <tr>
-	    <th>Rut</th>
+	    <th>Folio</th>
 	    <th>Nombre</th>
 	  </tr>
 	</thead>
 	<tbody>
 <?php
 $folio = $folio = 22986; 
-include "conexion/folio.php";
+include ("conexion/folio.php");
 $res = $conexion->query("select * from propiedad WHERE FOLIO=$folio");
 $row = $res->fetch_assoc(); 
 foreach ($row as $campo[]=>$valor); 
@@ -42,11 +42,11 @@ while ($row = $res->fetch_assoc()) {
 <form>
   <div class="form-group">
     <label for="nm">Folio</label>
-    <input type="text" class="form-control" id="nm<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['folio']; ?>">
+    <input type="text" class="form-control" id="nm<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['FOLIO']; ?>">
   </div>
   <div class="form-group">
     <label for="gd">Nombre</label>
-    <input type="text" class="form-control" id="gd<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['nombre']; ?>">
+    <input type="text" class="form-control" id="gd<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['NOMBRE']; ?>">
   </div>
 
 </form>
@@ -54,7 +54,7 @@ while ($row = $res->fetch_assoc()) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" onclick="updatedata('<?php echo $row['id_propiedad']; ?>')" class="btn btn-primary">Grabar</button>
+        <button type="button" onclick="updatedata_propiedad('<?php echo $row['id_propiedad']; ?>')" class="btn btn-primary">Grabar</button>
       </div>
     </div>
   </div>
