@@ -241,6 +241,7 @@ function click_tipo () {
 <div class="container miformulario"> 
 
 	<h3>Datos grabados</h3>
+	<?php include('getdata_propiedad.php'); ?>
 
 </div>
 

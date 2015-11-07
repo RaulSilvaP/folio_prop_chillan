@@ -20,17 +20,17 @@ if($_REQUEST) {
         $fecha_inscripcion="dd-mm-aaaa";
     }else{
         if(checkdate($var_mes,$var_dia,$var_ano)){
-            echo utf8_decode("Fecha válida");
+ //           echo utf8_decode("Fecha válida");
 
         }else{
-            echo "fecha erronea";
+ //           echo "fecha erronea";
         }
     }
     $bien_familiar = $_REQUEST['bien_familiar'];
     $litigio = $_REQUEST['litigio'];
 
 }
-echo "<br>".$folio."<br>";
+/*echo "<br>".$folio."<br>";
 echo $tipo."<br>";
 echo $nombre."<br>";
 echo $fojas."<br>";
@@ -41,4 +41,5 @@ echo $folio_anterior."<br>";
 echo $fecha_inscripcion."<br>";
 echo $bien_familiar."<br>";
 echo $litigio."<br>";
+*/
 ?>
