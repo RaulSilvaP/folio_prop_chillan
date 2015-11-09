@@ -7,7 +7,8 @@
   <title>jQuery Ajax Bootstrap</title>
 
   <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+ <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -21,7 +22,7 @@
       <div class="container">
 
         <!-- Button trigger modal -->
-        <h3>Tabla: COMERCIO</h3>
+        <h3>Tabla: PROPIEDAD</h3>
         <button type="button" class="btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal">
           Agregar
         </button>
@@ -61,10 +62,11 @@
       </div>
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src="js/jquery.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+      <!-- <script src="js/jquery.min.js"></script>  -->
       <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="js/bootstrap-confirmation.js"></script>
+      <script src="js/bootstrap.min.js"></script>  
+      <script type="text/javascript" src="js/bootstrap-confirmation.js"></script> 
       <script>
         function viewdata(){
          $.ajax({ 
@@ -74,6 +76,7 @@
          $('#viewdata').html(data);
        }); 
       }
+
       $('#save').click(function(){
 
        var tipo = $('#tipo').val();
@@ -92,10 +95,11 @@
       }).done(function( data ) {
         $('#info').html(data).fadeIn(1000);
         $('#info').html(data).delay(4000).fadeOut(2000);
-    $('#nm').val(""); // vacia el contenido del campo texto
-    viewdata();
-  });
+//    $('#tipo').val(""); // vacia el contenido del campo texto
+        viewdata();
+      });
     });
+
       function updatedata(str){
 
        var id = str;
@@ -107,6 +111,7 @@
        var ano = $('#ano'+str).val();
 
        var datas="tipo="+tipo+"&nombre="+nombre+"&fojas="+fojas+"&vuelta="+vuelta+"&numero="+numero+"&ano="+ano;
+//       alert(datas);
        $.ajax({
         type: "POST",
         url: "updatedata.php?id="+id,
@@ -114,9 +119,12 @@
       }).done(function( data ) {
         $('#info').html(data).fadeIn(1000);
         $('#info').html(data).delay(3000).fadeOut(1000);
+//        alert("Detiene el programa");
+
         viewdata();
       });
     }
+
     function deletedata(str){
 
       if (confirm("¿Esta seguro de eliminar el registro?") == true) {

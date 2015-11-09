@@ -16,10 +16,6 @@
   include ("conexion/folio.php");
 
   $res = $conexion->query("select * from propiedad WHERE folio=$folio");
-  $row = $res->fetch_assoc(); 
-  
-
-mysqli_data_seek($res,0);  //devuelve el puntero al primer resultado de la consulta
 
 while ($row = $res->fetch_assoc()) {
   ?>
@@ -47,7 +43,7 @@ while ($row = $res->fetch_assoc()) {
 
             <form>
               <div class="form-group">
-                <label for="tipo">Tipo</label>
+                <label for="tipo">Tipo1</label>
                 <input type="text" class="form-control" id="tipo<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['TIPO']; ?>">
               </div>
               <div class="form-group">
