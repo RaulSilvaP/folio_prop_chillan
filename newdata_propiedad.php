@@ -1,30 +1,25 @@
 <?php
 include ("conexion/folio.php");
-
-if(isset($_GET['id'])){
-$stmt = $conexion->prepare("update propiedad set folio=?, nombre=? where id_propiedad=?");
-$stmt->bind_param('sss', $nm, $gd, $id);
-
-
 $nm = $_POST['nm'];
 $gd = $_POST['gd'];
-$id = $_GET['id'];
+if($nm != null && $gd != null ){
+$stmt = $conexion->prepare("INSERT INTO tabla1 VALUES ('',?,?)");
+$stmt->bind_param('ss', $nm, $gd);
 
 
 if($stmt->execute()){
 ?>
-	
 <div class="alert alert-success alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Exito!</strong> Se han modificado los datos.
+  <strong>Exito!</strong> Los datos fueron grabados.
 </div>
-
 <?php
+
 } else{
 ?>
 <div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Error!</strong> Maaf terjadi kesalahan, data error.
+  <strong>Error!</strong> Los datos no fueron grabados.
 </div>
 <?php
 }
@@ -32,7 +27,7 @@ if($stmt->execute()){
 ?> 
 <div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Warning!</strong> Maaf anda salah alamat.
+  <strong>Advertencia!</strong> Existe algún problema de conexión.
 </div>
 <?php
 }
