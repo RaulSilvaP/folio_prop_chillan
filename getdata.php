@@ -12,7 +12,7 @@
  <tbody>
   <?php
     $folio=234;
-
+ 
   include ("conexion/folio.php");
 
   $res = $conexion->query("select * from propiedad WHERE folio=$folio");
