@@ -1,3 +1,5 @@
+jQuery(function($) { 
+
     function viewdata(){
       var folio = $('#folio').val();
      $.ajax({ 
@@ -75,7 +77,6 @@
 
     }
 
-jQuery(function($) { 
     $('#tipo').css("display","none");
     $('#tipo').val($('#tipo0').val()); //asigna el valor del SELECT tipo0 al campo oculto tipo
     $('#tipo0').change(function(){  // si el SELECT cambia vuelve a asignar nuevo valor al campo tipo
