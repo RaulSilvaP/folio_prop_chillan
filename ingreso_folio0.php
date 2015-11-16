@@ -14,7 +14,7 @@ jQuery(function($) {
       });
 
 
-
+ 
     $('#folio').blur(function(){  // Valida que un folio no esté repetido
 
         $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(500);
@@ -86,8 +86,9 @@ jQuery(function($) {
 
 
 
-
+<!--
 <form id="form1" class="form-horizontal" action="ingreso_propiedad1.php" method="post" >
+-->
 <fieldset>
 
 <!-- Form Name -->
@@ -233,8 +234,9 @@ jQuery(function($) {
   
   <div class="datos"></div>
   </fieldset>
+<!--  
   </form>
- 
+ -->
 
 </div> <!-- /container -->
     <footer class="footer">

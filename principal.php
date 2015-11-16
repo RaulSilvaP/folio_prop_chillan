@@ -12,7 +12,7 @@
 
 		 
 	</div> <!-- /container -->
-    <footer class="footer">
+    <footer class="footer1">
       <?php  include('footer.html');  
       ?>
     </footer>

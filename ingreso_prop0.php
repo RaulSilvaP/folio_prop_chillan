@@ -7,8 +7,6 @@
     $sql1="SELECT * FROM tipo_propiedad "; //consulta sql
     $result1 = $conexion->query($sql1); //usamos la conexion para dar un resultado a la variable
 	?>
-	<script type="text/javascript" src="js/bootstrap-confirmation.js"></script>
-	<script type="text/javascript" src="js/funciones.js"></script>
 <script type="text/javascript">  
 jQuery(function($) {  
 
@@ -37,16 +35,6 @@ jQuery(function($) {
         });
     }); 
 
-    $.datepicker.setDefaults($.datepicker.regional["es"]);
-    $( "#date-picker" ).datepicker({ 
-      dateFormat: "dd-mm-yyyy",
-      changeYear: true,
-      changeMonth: true,
-      yearRange: "1900:2099",
-      firstDay: 1, //  1=Lunes
-      dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
-      monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ]
-    });
 
     $("#fecha_inscripcion").mask("99-99-9999",{placeholder:"dd-mm-aaaa"});
     $("#ano").mask("9999");
@@ -94,6 +82,7 @@ function click_tipo () {
 <body onload="viewdata()">
 	<div class="container miformulario">  
 
+
 		<form id="form1" class="form-horizontal" action="ingreso_propiedad1.php" method="post" >
 			<fieldset>
 
@@ -117,7 +106,7 @@ function click_tipo () {
 								<div class="form-group">
 									<label class="col-md-6 control-label" for="tipo">Tipo Inscripción</label>
 									<div class="col-md-5 form-inline">
-										<select id="tipo" name="tipo" class="form-control">
+										<select id="tipo0" name="tipo0" class="form-control">
 											<?php
 											while ($row1 = $result1->fetch_array()) 
 											{
@@ -127,8 +116,15 @@ function click_tipo () {
 												<?php
 											} ?>
 										</select>
-											<button type="button" class="btn btn-primary btn-xs" onclick="click_tipo()">+</button>
+					<!--		  				<button type="button" class="btn btn-primary btn-xs" onclick="click_tipo()">+</button> -->
 									</div>
+									<!-- Text input   SOLO SI SE ELIGE OTRO TIPO DE INSCRIPCION-->
+									<div class="form-group">
+										<label class="col-md-6 control-label" for="tipo"></label>  
+										<div class="col-md-6" id="id_tipo">
+											<input type="text" id="tipo" name="tipo" class="form-control input-md" required="">
+										</div>
+									</div><!-- fin Text input-->
 								</div>
 								<!-- Text input-->
 								<div class="form-group">
@@ -143,8 +139,8 @@ function click_tipo () {
 									<div class="col-md-3">
 										<input id="fojas" name="fojas" type="number" placeholder="Fojas" class="form-control input-md" required=""/>
 									</div>
-									<label class="checkbox-inline" for="vuelta-0">
-										<input type="checkbox" name="vuelta" id="vuelta-0" value="v" /> vuelta
+									<label class="checkbox-inline" for="vuelta">
+										<input type="checkbox" name="vuelta" id="vuelta" value="v" /> vuelta
 									</label>
 								</div><!-- fin Text input-->
 								<!-- Text input-->
@@ -187,12 +183,12 @@ function click_tipo () {
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="bien_familiar">Bien Familiar</label>
 									<div class="col-md-3"> 
-										<label class="radio-inline" for="bien_familiar-0">
-											<input type="radio" name="bien_familiar" id="bien_familiar-0" value="no" checked="checked"/>
+										<label class="radio-inline bien_familiar" for="bien_familiar-0">
+											<input type="radio" name="bien_familiar" id="bien_familiar-0" value="N" checked="checked"/>
 											No
 										</label> 
-										<label class="radio-inline" for="bien_familiar-1">
-											<input type="radio" name="bien_familiar" id="bien_familiar-1" value="si"/>
+										<label class="radio-inline bien_familiar" for="bien_familiar-1">
+											<input type="radio" name="bien_familiar" id="bien_familiar-1" value="S"/>
 											Si
 										</label>
 									</div>
@@ -203,11 +199,11 @@ function click_tipo () {
 									<label class="col-md-3 control-label" for="Litigio">Litigio</label>
 									<div class="col-md-3"> 
 										<label class="radio-inline" for="Litigio-0">
-											<input type="radio" name="litigio" id="litigio-0" value="no" checked="checked"/>
+											<input type="radio" name="litigio" id="litigio-0" value="N" checked="checked"/>
 											No
 										</label> 
 										<label class="radio-inline" for="Litigio-1">
-											<input type="radio" name="litigio" id="litigio-1" value="si"/>
+											<input type="radio" name="litigio" id="litigio-1" value="S"/>
 											Si
 										</label>
 									</div>
@@ -225,7 +221,9 @@ function click_tipo () {
 				<div class="form-group"> 
 					<label class="col-md-3 control-label" for="grabar"></label>
 					<div class="col-md-4">
-						<button id="grabar" name="grabar" class="btn btn-success">Grabar</button>
+
+
+						<button type="button" id="grabar" name="grabar" class="btn btn-success">Grabar</button>
 					</div>
 					<button type="button" id="boton_hipoteca" name="boton_hipoteca" class="btn btn-primary" onclick="click_hipoteca()">Agregar Hipoteca</button>
 					<button type="button" id="boton_prohibicion" name="boton_prohibicion" class="btn btn-primary" onclick="click_prohibicion()">Agregar Prohibicion</button>
@@ -235,15 +233,13 @@ function click_tipo () {
  
 			</fieldset>
 		</form>
-	<h3>Datos grabados</h3><div id="info"></div>
-	<?php //include('getdata_propiedad.php'); ?>
-	<div id="viewdata"></div>
+		<div id="info"></div>
+		<div id="viewdata"></div>
 
 
 	</div> <!-- /container -->
 	<footer class="footer">
-		<?php  include('footer.html');  
-		?> 
+		<?php  include('footer.html'); ?> 
 	</footer>
 
 </body>
