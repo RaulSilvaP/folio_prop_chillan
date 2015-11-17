@@ -58,3 +58,11 @@ label.control-label span { cursor: pointer; }
 	height: 80%;
 }
 
+#respuesta {
+	float: left;
+
+}
+#grabar {
+	float: left;
+}
+

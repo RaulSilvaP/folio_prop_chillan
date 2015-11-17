@@ -218,12 +218,12 @@ function click_tipo () {
 
 				</div>
 
-				<div class="form-group"> 
+				<div class="form-inline"> 
 					<label class="col-md-3 control-label" for="grabar"></label>
 					<div class="col-md-4">
 
 
-						<button type="button" id="grabar" name="grabar" class="btn btn-success">Grabar</button>
+						<button type="button" id="grabar" name="grabar" class="btn btn-success">Grabar</button><div id="respuesta"></div>
 					</div>
 					<button type="button" id="boton_hipoteca" name="boton_hipoteca" class="btn btn-primary" onclick="click_hipoteca()">Agregar Hipoteca</button>
 					<button type="button" id="boton_prohibicion" name="boton_prohibicion" class="btn btn-primary" onclick="click_prohibicion()">Agregar Prohibicion</button>
