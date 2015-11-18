@@ -113,8 +113,8 @@ jQuery(function($) {
         url: "newdata_propiedad.php",
         data: datas
       }).done(function( data ) {
-        $('#info').html(data).fadeIn(1000);
-        $('#info').html(data).delay(4000).fadeOut(2000);
+        $('#respuesta').html(data).fadeIn(1000);
+        $('#respuesta').html(data).delay(4000).fadeOut(2000);
 //    $('#tipo').val(""); // vacia el contenido del campo texto
         viewdata();
       });

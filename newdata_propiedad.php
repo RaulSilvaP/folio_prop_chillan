@@ -33,10 +33,17 @@ $stmt->bind_param('sssssssssss', $folio, $ano, $tipo, $nombre, $fojas, $vuelta, 
 
 if($stmt->execute()){
 	?>
+
+	<div id="Success" class="text-success"><span class="glyphicon glyphicon-ok"></span> Datos grabados</div>
+<!--
 	<div class="alert alert-success alert-dismissible" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		<strong>Exito!</strong> Los datos fueron grabados.
 	</div>
+-->	
+
+
+
 	<?php
 
 } else{
@@ -48,6 +55,8 @@ if($stmt->execute()){
 	<?php
 }
 } else{
+
+	/*
 	echo "falló el envío...<br/>";
 	echo "<br>Folio :".$folio."<br>";
 	echo "Tipo :".$tipo."<br>";
@@ -60,7 +69,13 @@ if($stmt->execute()){
 	echo "Fecha Insc. :".$fecha_inscripcion."<br>";
 	echo "Bien Familiar :".$bien_familiar."<br>";
 	echo "Litigio :".$litigio."<br>";
-?> <!--
+
+*/
+
+?> 
+<div id="Error" class="text-danger"><span class="glyphicon glyphicon-remove"></span> Error, dato no fue grabado</div>
+
+<!--
 <div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Advertencia!</strong> Existe algún problema de conexión.
