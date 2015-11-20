@@ -137,6 +137,7 @@ function click_tipo () {
        data: "folio="+folio
         }).done(function( data ) {
       $('#viewdata').html(data);
+
         });
       }
 
@@ -168,7 +169,7 @@ function click_tipo () {
         var fojas = $('#fojas'+id).val();
 //        var vuelta = $('input:checkbox[name=vuelta]:checked').val();
         var vuelta = $('#vuelta'+id).val();
-        alert(vuelta);
+
         var numero = $('#numero'+id).val();
         var ano = $('#ano'+id).val();
         var datas="id="+id+"&tipo="+tipo+"&nombre="+nombre+"&fojas="+fojas+"&vuelta="+vuelta+"&numero="+numero+"&ano="+ano;   //+"&fecha_inscripcion="+fecha_inscripcion+"&folio_anterior="+
@@ -180,6 +181,7 @@ function click_tipo () {
         }).done(function( data ) {
           $('#info').html(data).fadeIn(1000);
           $('#info').html(data).delay(3000).fadeOut(1000);
+          $('body').css('overflow', 'visible');  // HABILITAR EL SCROLL DE LA PÁGINA (BODY) el modal lo desabilitaba
           viewdata();
         });
       }
