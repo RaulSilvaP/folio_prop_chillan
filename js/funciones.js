@@ -91,7 +91,8 @@ jQuery(function($) {
     });
 
     $('#grabar').click(function(){
-
+      
+       var exito = $('#info_folio').val();
        var folio = $('#folio').val();
        var tipo = $('#tipo').val();
        var nombre = $('#nombre').val();
@@ -103,6 +104,20 @@ jQuery(function($) {
        var folio_anterior = $('#folio_anterior').val();
        var bien_familiar = $('input:radio[name=bien_familiar]:checked').val();
        var litigio = $('input:radio[name=litigio]:checked').val();
+       if(exito !="exito") {  //valida que campo folio no esté repetido
+          data='<div id="Error" class="text-danger"><span class="glyphicon glyphicon-remove"></span> Error, no se puede grabar los datos</div>'
+          $('#respuesta').html(data).fadeIn(1000);
+          $('#respuesta').html(data).delay(4000).fadeOut(2000);
+          return
+       }
+
+       if(folio=="" || tipo=="" || nombre=="" || fojas=="" || numero=="" || ano=="") {   //valida que estos campos no esten vacios
+          data='<div id="Error" class="text-danger"><span class="glyphicon glyphicon-remove"></span> Error, algunos datos estan vacios</div>'
+          $('#respuesta').html(data).fadeIn(1000);
+          $('#respuesta').html(data).delay(4000).fadeOut(2000);
+          return
+       }
+
 
        var datas="folio="+folio+"&tipo="+tipo+"&nombre="+nombre+"&fojas="+fojas+"&vuelta="+vuelta+
        "&numero="+numero+"&ano="+ano+"&fecha_inscripcion="+fecha_inscripcion+"&folio_anterior="+

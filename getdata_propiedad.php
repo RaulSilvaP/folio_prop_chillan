@@ -11,6 +11,7 @@
      <th>vuelta</th>
      <th>Número</th>
      <th>Año</th>
+     <th>Acción</th>     
    </tr>
  </thead>
  <tbody>

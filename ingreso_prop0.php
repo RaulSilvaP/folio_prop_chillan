@@ -24,13 +24,16 @@ jQuery(function($) {
             data: dataString,
             success: function(data) {
                 if(data=="existe") {
-                  $('#Info').fadeIn(500).html('<div id="Error" class="text-danger"><span class="glyphicon glyphicon-remove"></span> Folio ya existe</div>');
-                  $('#folio').focus();
-                  $('#folio').select();
+                	$('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="error"/>');
+                  	$('#Info').fadeIn(500).html('<div id="Error" class="text-danger" ><span class="glyphicon glyphicon-remove"></span> Folio ya existe</div>');
+                  	$('#folio').focus();
+                  	$('#folio').select();
 
                 }else{
-                  $('#Info').fadeIn(500).html('<div id="Success" class="text-success"><span class="glyphicon glyphicon-ok"></span> Folio disponible</div>');
+                	$('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="exito"/>');
+                	$('#Info').fadeIn(500).html('<div id="Success" class="text-success" ><span class="glyphicon glyphicon-ok"></span> Folio disponible</div>');
                 }
+            	 	   	
             }
         });
     }); 
@@ -98,7 +101,7 @@ function click_tipo () {
 							<label class="col-md-4 control-label" for="folio">Folio Real</label>  
 							<div class="col-md-2">
 								<input id="folio" name="folio" type="text" placeholder="N° Folio Real" class="form-control input-md" required autofocus  />
-							</div><div id="Info"></div>
+							</div><div id="Info2"></div><div id="Info"></div>
 						</div><!-- fin Text input-->
 						<div class="row">
 							<div class="col-md-6">
