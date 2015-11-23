@@ -2,6 +2,7 @@
     $folio = $_POST['folio'];
 ?>
 <h4>Datos grabados Folio Real Nº : <?php echo $folio; ?></h4>
+
 <table class="table table-bordered table-hover">
 	<thead>
    <tr>
@@ -49,7 +50,7 @@ while ($row = $res->fetch_assoc()) {
 
             <form>
               <div class="form-group">
-                <label for="tipo">Tipo1</label>
+                <label for="tipo">Tipo</label>
                 <input type="text" class="form-control" id="tipo<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['TIPO']; ?>">
               </div>
               <div class="form-group">
