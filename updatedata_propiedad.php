@@ -6,7 +6,7 @@ $stmt = $conexion->prepare("update propiedad set TIPO=?, NOMBRE=?, FOJAS=?, VUEL
 $stmt->bind_param('sssssss', $tipo, $nombre, $fojas, $vuelta, $numero, $ano, $id);
 
 $tipo = $_POST['tipo'];
-$nombre = $_POST['nombre'];
+$nombre = $_POST['nombre_prop'];
 $fojas = $_POST['fojas'];
 $vuelta = $_POST['vuelta'];
 $numero = $_POST['numero'];

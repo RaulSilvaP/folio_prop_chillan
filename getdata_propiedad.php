@@ -24,9 +24,15 @@
 
   $res = $conexion->query("select * from propiedad WHERE folio=$folio");
 
+$total= $res->num_rows;
+if($total==1 ) {     //CONDICIONAL PARA DESABILITAR EL BOTÓN ELIMINAR CUANDO QUEDA UN SÓLO REGISTRO EN EL FOLIO
+  $desabilitar="disabled";
+}else{
+  $desabilitar="";
+}
 while ($row = $res->fetch_assoc()) {
   ?>
-
+ 
   <tr>
    <td><?php echo $row['TIPO']; ?></td>
    <td><?php echo $row['NOMBRE']; ?></td>
@@ -36,7 +42,7 @@ while ($row = $res->fetch_assoc()) {
    <td><?php echo $row['ANO']; ?></td>
    <td>
      <a title="Editar" id="editar" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $row['id_propiedad']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-     <a title="Eliminar" class="btn btn-danger btn-sm"  onclick="deletedata('<?php echo $row['id_propiedad']; ?>')" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+     <a title="Eliminar" class="btn btn-danger btn-sm" <?php echo $desabilitar; ?> onclick="deletedata_propiedad('<?php echo $row['id_propiedad']; ?>')" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 
      <!-- Modal -->
      <div class="modal fade" id="myModal<?php echo $row['id_propiedad']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel<?php echo $row['id_propiedad']; ?>" aria-hidden="true">
@@ -54,8 +60,8 @@ while ($row = $res->fetch_assoc()) {
                 <input type="text" class="form-control" id="tipo<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['TIPO']; ?>">
               </div>
               <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['NOMBRE']; ?>">
+                <label for="nombre_prop">Nombre</label>
+                <input type="text" class="form-control" id="nombre_prop<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['NOMBRE']; ?>">
               </div>
               <div class="form-group">
                 <label for="fojas">Fojas</label>
@@ -79,7 +85,7 @@ while ($row = $res->fetch_assoc()) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" onclick="updatedata('<?php echo $row['id_propiedad']; ?>')" class="btn btn-primary">Grabar</button>
+            <button type="button" onclick="updatedata_propiedad('<?php echo $row['id_propiedad']; ?>')" class="btn btn-primary">Grabar</button>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ include ("conexion/folio.php");
 
 $folio = $_POST['folio'];
 $tipo = $_POST['tipo'];
-$nombre = $_POST['nombre'];
+$nombre = $_POST['nombre_prop'];
 $fojas = $_POST['fojas'];
 $vuelta = $_POST['vuelta'];
 if ($vuelta!="v") {$vuelta=" ";}

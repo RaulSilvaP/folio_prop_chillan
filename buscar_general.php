@@ -128,5 +128,6 @@
 
 		?>
 	</div> <!-- /container -->
+		<?php  include('footer.html'); ?>
 </body>
 </html>

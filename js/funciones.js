@@ -23,6 +23,11 @@ jQuery(function($) {
                 }
             }
         });
+
+
+
+
+
     }); 
 
 
@@ -48,7 +53,7 @@ jQuery(function($) {
     }); 
 
 
-
+    //MANIPULAR CAMPO SELECT DE TIPO DE INSCRIPCION
     $('#tipo').css("display","none");
     $('#tipo').val($('#tipo0').val()); //asigna el valor del SELECT tipo0 al campo oculto tipo
     $('#tipo0').change(function(){  // si el SELECT cambia vuelve a asignar nuevo valor al campo tipo
@@ -58,16 +63,56 @@ jQuery(function($) {
           $('#tipo').val(""); //borra el contenido del campo tipo
           $('#tipo').attr("placeholder","otro tipo de inscripción");
         }else{
-          $('#tipo').css("display","none");
+//          $('#tipo').css("display","none");
         }
     });
+ 
+
+    //MANIPULAR CAMPO SELECT DE NOMBRE DE PROPIETARIOS para hipoteca y prohibicion
+    $('#nombre').css("display","none");   //oculta campo nombre
+
+    $('#nombre').val($('#nombre0').val()); //asigna el valor del SELECT nombre0 al campo oculto nombre
+    $('#nombre0').change(function(){  // si el SELECT cambia vuelve a asignar nuevo valor al campo tipo
+        $('#nombre').val($('#nombre0').val());
+        $('#nombre0').css("display","none");
+        $('#nombre').show();
+        if ( $('#nombre0').val()=="Otro" ) { //si se selecciona otro tipo de inscripción
+          $('#nombre').val(""); //borra el contenido del campo tipo
+          $('#nombre').attr("placeholder","otro propietario");
+        }else{
+//          $('#nombre').css("display","none");
+        }
+                   
+
+        if ($('#nombre0').val()=="Todos" ) {
+          var total = ($('select#nombre0 option').length);
+          $("select#nombre0").prop('selectedIndex', (total-2));
+          if (total<=3) {
+              var mitexto = $('#nombre0').val();
+          }else if (total==4) {
+              var mitexto = $('#nombre0').val()+" Y OTRO";
+          }else if (total>4) {
+              var mitexto = $('#nombre0').val()+" Y OTROS";
+          }    
+          $('#nombre').val(mitexto);
+        }
 
 
-    $('#grabar').click(function(){
+
+
+    });
+ 
+
+
+
+
+
+// GRABA NUEVO FOLIO DE PROPIEDAD
+    $('#grabar_prop').click(function(){
        var exito = $('#info_folio').val();
        var folio = $('#folio').val();
        var tipo = $('#tipo').val();
-       var nombre = $('#nombre').val();
+       var nombre = $('#nombre_prop').val();
        var fojas = $('#fojas').val();
        var vuelta = $('input:checkbox[name=vuelta]:checked').val();
        var numero = $('#numero').val();
@@ -88,7 +133,7 @@ jQuery(function($) {
           $('#respuesta').html(data).delay(4000).fadeOut(2000);
           return
        }
-       var datas="folio="+folio+"&tipo="+tipo+"&nombre="+nombre+"&fojas="+fojas+"&vuelta="+vuelta+
+       var datas="folio="+folio+"&tipo="+tipo+"&nombre_prop="+nombre+"&fojas="+fojas+"&vuelta="+vuelta+
        "&numero="+numero+"&ano="+ano+"&fecha_inscripcion="+fecha_inscripcion+"&folio_anterior="+
        folio_anterior+"&bien_familiar="+bien_familiar+"&litigio="+litigio;
 
@@ -100,12 +145,48 @@ jQuery(function($) {
         $('#respuesta').html(data).fadeIn(1000);
         $('#respuesta').html(data).delay(4000).fadeOut(2000);
 //    $('#tipo').val(""); // vacia el contenido del campo texto
-        viewdata();
+        viewdata_propiedad();
       });
     });
 
 
 
+        $('#buscar_fol').click(function(){  // Valida que un folio exista
+        $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(300);
+        var folio = $('#folio_hip').val();  
+        $('#nombre').css("display","none");
+        $('#nombre0').show();
+
+        var dataString = 'folio='+folio;
+        $.ajax({
+            type: "POST",
+            url: "busca_folio.php",
+            data: dataString,
+            success: function(data) {
+                if(data != "existe") {
+                  $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="error"/>');
+                    $('#Info').fadeIn(300).html('<div id="Error" class="text-danger" ><span class="glyphicon glyphicon-remove"></span> Folio no existe</div>');
+                    $('#folio').focus();
+                    $('#folio').select();
+                }else{
+                  $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="exito"/>');
+                  $('#Info').fadeIn(300).html('<div id="Success" class="text-success" ><span class="glyphicon glyphicon-ok"></span> Folio correcto</div>');
+                    $.ajax({
+                        url: "procesar_select.php",
+                        data: dataString,
+                        success: function(data) {
+                          $('#nombre0').html(data);
+                          $("select#nombre0").prop('selectedIndex', 1);
+                          $('#nombre').val($('#nombre0').val()); //asigna el valor del SELECT nombre0 al campo oculto nombre
+                        }
+                    });
+
+
+                }
+            }
+        });
+
+        });
 
 
 
@@ -128,8 +209,8 @@ function click_tipo () {
 
 
 
-
-      function viewdata(){
+//  FUNCIONES DE CRUD DEL REGISTRO DE PROPIEDAD
+      function viewdata_propiedad(){
         var folio = $('#folio').val();
        $.ajax({ 
        type: "POST",
@@ -156,23 +237,23 @@ function click_tipo () {
           $('#info').html(data).fadeIn(1000);
           $('#info').html(data).delay(4000).fadeOut(2000);
           $('#nm').val(""); // vacia el contenido del campo texto
-          viewdata();
+          viewdata_propiedad();
         });
       });
   
 
 
-      function updatedata(str){
+      function updatedata_propiedad(str){
         var id = str;
         var tipo = $('#tipo'+id).val();
-        var nombre = $('#nombre'+id).val();
+        var nombre = $('#nombre_prop'+id).val();
         var fojas = $('#fojas'+id).val();
 //        var vuelta = $('input:checkbox[name=vuelta]:checked').val();
         var vuelta = $('#vuelta'+id).val();
 
         var numero = $('#numero'+id).val();
         var ano = $('#ano'+id).val();
-        var datas="id="+id+"&tipo="+tipo+"&nombre="+nombre+"&fojas="+fojas+"&vuelta="+vuelta+"&numero="+numero+"&ano="+ano;   //+"&fecha_inscripcion="+fecha_inscripcion+"&folio_anterior="+
+        var datas="id="+id+"&tipo="+tipo+"&nombre_prop="+nombre+"&fojas="+fojas+"&vuelta="+vuelta+"&numero="+numero+"&ano="+ano;   //+"&fecha_inscripcion="+fecha_inscripcion+"&folio_anterior="+
          //folio_anterior+"&bien_familiar="+bien_familiar+"&litigio="+litigio;
         $.ajax({
            type: "POST",
@@ -182,14 +263,14 @@ function click_tipo () {
           $('#info').html(data).fadeIn(1000);
           $('#info').html(data).delay(3000).fadeOut(1000);
           $('body').css('overflow', 'visible');  // HABILITAR EL SCROLL DE LA PÁGINA (BODY) el modal lo desabilitaba
-          viewdata();
+          viewdata_propiedad();
         });
       }
 
 
 
 
-      function deletedata(str){
+      function deletedata_propiedad(str){
           if (confirm("¿Esta seguro de eliminar el registro?") == true) {
             var id = str;
             $.ajax({
@@ -198,13 +279,14 @@ function click_tipo () {
             }).done(function( data ) {
               $('#info').html(data).fadeIn(1000);
               $('#info').html(data).delay(2000).fadeOut(1000);
-              viewdata();
+              viewdata_propiedad();
             });
           } else {
             var id = str;
             var data ='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>No se ha eliminado el registro.</div>';
               $('#info').html(data).fadeIn(1000);
               $('#info').html(data).delay(2000).fadeOut(1000);
-              viewdata();
+              viewdata_propiedad();
           }
       }
+// FIN FUNCIONES CRUD DE PROPIEDAD
