@@ -2,20 +2,38 @@
 include ("conexion/folio.php");
 
 if(isset($_POST['id'])){
-$stmt = $conexion->prepare("update propiedad set TIPO=?, NOMBRE=?, FOJAS=?, VUELTA=?, NUMERO=?, ANO=? where id_propiedad=?");
-$stmt->bind_param('sssssss', $tipo, $nombre, $fojas, $vuelta, $numero, $ano, $id);
+$stmt = $conexion->prepare("update hipoteca set TIPO=?, NOMBRE=?, FOJAS=?, VUELTA=?, NUMERO=?, ANO=?, ACREEDOR=? where id_hipoteca=?");
+$stmt->bind_param('ssssssss', $tipo, $nombre, $fojas, $vuelta, $numero, $ano, $acreedor,  $id);
 
 $tipo = $_POST['tipo'];
-$nombre = $_POST['nombre_prop'];
+$nombre = $_POST['nombre'];
 $fojas = $_POST['fojas'];
-$vuelta = $_POST['vuelta'];
+if($_POST['vuelta']=="v") {
+	$vuelta="v";
+}else{
+	$vuelta = ' ';
+}
 $numero = $_POST['numero'];
 $ano = $_POST['ano'];
+$acreedor = $_POST['acreedor'];
 $id = $_POST['id'];
 
-if($stmt->execute()){
+  /*   //MUESTRA DATOS PARA DEPURAR LA RECEPCION DE DATOS DESDE AJAX
+echo $id."<br/>";
+echo $tipo."<br/>";
+echo $nombre."<br/>";
+echo $fojas."<br/>";
+echo $vuelta."<br/>";
+echo $numero."<br/>";
+echo $ano."<br/>";
+echo $acreedor."<br/>";
+exit;
 
-//echo $nombre;
+  */
+
+
+
+if($stmt->execute()){
 
 
 	?>

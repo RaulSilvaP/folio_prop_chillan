@@ -65,7 +65,7 @@ label.control-label span { cursor: pointer; }
 	float: left;
 
 }
-#grabar {
+#grabar_prop, #grabar_hipo, #grabar_proh {
 	float: left;
 }
 
