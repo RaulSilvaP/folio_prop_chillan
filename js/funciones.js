@@ -1,4 +1,3 @@
-var folio_global=0;
 jQuery(function($) {  
 
     //funciones javascript de control de la pagina INGRESO FOLIO PROPIEDAD
@@ -213,7 +212,7 @@ jQuery(function($) {
 
 
 
-     $('#buscar_fol').click(function(){  // Valida que un folio exista (ingreso hipoteca)
+     $('#buscar_fol_hip').click(function(){  // Valida que un folio exista (ingreso hipoteca)
           $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(300);
           var folio = $('#folio_hip').val();  
           $('#nombre').css("display","none");
@@ -251,31 +250,112 @@ jQuery(function($) {
 
 
 
+// GRABA NUEVO PROHIBICION
+    $('#grabar_proh').click(function(){
+       var exito = $('#info_folio').val();
+       var folio = $('#folio_proh').val();
+       var tipo = $('#tipo').val();
+       var nombre = $('#nombre').val();
+       var fojas = $('#fojas').val();
+       var vuelta = $('input:checkbox[name=vuelta]:checked').val();
+       var numero = $('#numero').val();
+       var ano = $('#ano').val();
+       var acreedor = $('#acreedor').val();
+       if(exito !="exito") {  //valida que campo folio no esté repetido
+          data='<div id="Error" class="text-danger"><span class="glyphicon glyphicon-remove"></span> Error, no se puede grabar los datos</div>'
+          $('#respuesta').html(data).fadeIn(1000);
+          $('#respuesta').html(data).delay(4000).fadeOut(2000);
+          return
+       }
+       if(folio=="" || tipo=="" || nombre=="" || fojas=="" || numero=="" || ano=="" || acreedor=="") {   //valida que estos campos no esten vacios
+          data='<div id="Error" class="text-danger"><span class="glyphicon glyphicon-remove"></span> Error, algunos datos estan vacios</div>'
+          $('#respuesta').html(data).fadeIn(1000);
+          $('#respuesta').html(data).delay(4000).fadeOut(2000);
+          return
+       }
+       var datas="folio="+folio+"&tipo="+tipo+"&nombre="+nombre+"&fojas="+fojas+"&vuelta="+vuelta+
+       "&numero="+numero+"&ano="+ano+"&acreedor="+acreedor;
+
+       $.ajax({
+        type: "POST",
+        url: "newdata_prohibicion.php",
+        data: datas
+      }).done(function( data ) {
+        $('#respuesta').html(data).fadeIn(1000);
+        $('#respuesta').html(data).delay(4000).fadeOut(2000);
+        $('#fojas').val(""); // vacia el contenido del campo 
+        $('#vuelta').prop('checked',false); // vacia el contenido del campo 
+        $('#numero').val(""); // vacia el contenido del campo 
+        $('#ano').val(""); // vacia el contenido del campo 
+        $('#fojas').focus();
+        viewdata_prohibicion();
+      });
+    });
+
+
+
+
+
+
+     $('#buscar_fol_proh').click(function(){  // Valida que un folio exista (ingreso prohibición)
+          $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(300);
+          var folio = $('#folio_proh').val();  
+          $('#nombre').css("display","none");
+          $('#nombre0').show();
+
+          var dataString = 'folio='+folio;
+          $.ajax({
+            type: "POST",
+            url: "busca_folio.php",
+            data: dataString,
+            success: function(data) {
+              if(data != "existe") {
+                $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="error"/>');
+                $('#Info').fadeIn(300).html('<div id="Error" class="text-danger" ><span class="glyphicon glyphicon-remove"></span> Folio no existe</div>');
+                $('#folio_hip').focus();
+                $('#folio_hip').select();
+              }else{
+                $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="exito"/>');
+                $('#Info').fadeIn(300).html('<div id="Success" class="text-success" ><span class="glyphicon glyphicon-ok"></span> Folio correcto</div>');
+                $.ajax({
+                  url: "procesar_select.php",
+                  data: dataString,
+                  success: function(data) {
+                    $('#nombre0').html(data);
+                    $("select#nombre0").prop('selectedIndex', 1);
+                    $('#nombre').val($('#nombre0').val()); //asigna el valor del SELECT nombre0 al campo oculto nombre
+                    $('#nombre0').attr('size','4');  //determina que el select nombre se despleque con 4 elementos abiertos
+                  }
+                });
+              }
+            }
+          });
+
+      });
+
+
+
+
+     $('#boton_propiedad').click(function(){  // Valida que un folio exista (ingreso hipoteca)
+          var folio = $('#folio').val();  
+          window.location="ingreso_prop0.php";
+      });
 
      $('#boton_hipoteca').click(function(){  // Valida que un folio exista (ingreso hipoteca)
           var folio = $('#folio').val();  
           window.location="ingreso_hipo0.php?folio="+folio;
       });
 
+     $('#boton_prohibicion').click(function(){  // Valida que un folio exista (ingreso hipoteca)
+          var folio = $('#folio').val();  
+          window.location="ingreso_proh0.php?folio="+folio;
+      });
 
 
 
 
 
 });   //cierre Jquery
-
-
-function click_hipoteca (str) {
-//  alert("Presionó botón Hipoteca");
-//  window.location="ingreso_hipo0.php";
-//  $('#folio_hip').val(folio_global);  //asigna el folio de propiedad al folio de hipoteca cuando se preciona el boton ingreso de hipoteca
-
-}
-function click_prohibicion () {
-  alert("Presionó botón Prohibición");
-}
-
-
 
 
 
@@ -444,3 +524,87 @@ function click_prohibicion () {
           }
       }
 // FIN FUNCIONES CRUD DE HIPOTECA
+
+
+//  FUNCIONES DE CRUD DEL REGISTRO DE PROHIBICION
+      function viewdata_prohibicion(){
+        var folio = $('#folio_proh').val();
+       $.ajax({ 
+       type: "POST",
+       url: "getdata_prohibicion.php",
+       data: "folio="+folio
+        }).done(function( data ) {
+      $('#viewdata').html(data);
+
+        });
+      }
+
+
+      $('#save').click(function(){
+         var nm = $('#nm').val();
+         var gd = $('#gd').val();
+         var pn = $('#pn').val();
+         var al = $('#al').val();
+         var datas="nm="+nm+"&gd="+gd+"&pn="+pn+"&al="+al;
+         $.ajax({
+          type: "POST",
+          url: "newdata.php",
+          data: datas
+        }).done(function( data ) {
+          $('#info').html(data).fadeIn(1000);
+          $('#info').html(data).delay(4000).fadeOut(2000);
+          $('#nm').val(""); // vacia el contenido del campo texto
+          viewdata_propiedad();
+        });
+      });
+  
+
+
+      function updatedata_prohibicion(str){
+        var id = str;
+        var tipo = $('#tipo'+id).val();
+        var nombre = $('#nombre'+id).val();
+        var fojas = $('#fojas'+id).val();
+//        var vuelta = $('input:checkbox[name=vuelta]:checked').val();
+        var vuelta = $('#vuelta'+id+':checked').val();
+
+        var numero = $('#numero'+id).val();
+        var ano = $('#ano'+id).val();
+        var acreedor = $('#acreedor'+id).val();
+        var datas="id="+id+"&tipo="+tipo+"&nombre="+nombre+"&fojas="+fojas+"&vuelta="+vuelta+"&numero="+numero+"&ano="+ano+"&acreedor="+acreedor;   //+"&fecha_inscripcion="+fecha_inscripcion+"&folio_anterior="+
+         //folio_anterior+"&bien_familiar="+bien_familiar+"&litigio="+litigio;
+        $.ajax({
+           type: "POST",
+           url: "updatedata_prohibicion.php",
+           data: datas
+        }).done(function( data ) {
+          $('#info').html(data).fadeIn(1000);
+          $('#info').html(data).delay(3000).fadeOut(1000);
+          $('body').css('overflow', 'visible');  // HABILITAR EL SCROLL DE LA PÁGINA (BODY) el modal lo desabilitaba
+          viewdata_prohibicion();
+        });
+      }
+
+
+
+
+      function deletedata_prohibicion(str){
+          if (confirm("¿Esta seguro de eliminar el registro?") == true) {
+            var id = str;
+            $.ajax({
+               type: "GET",
+               url: "deletedata_prohibicion.php?id="+id
+            }).done(function( data ) {
+              $('#info').html(data).fadeIn(1000);
+              $('#info').html(data).delay(2000).fadeOut(1000);
+              viewdata_prohibicion();
+            });
+          } else {
+            var id = str;
+            var data ='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Eligió no eliminar el registro.</div>';
+              $('#info').html(data).fadeIn(1000);
+              $('#info').html(data).delay(2000).fadeOut(1000);
+              viewdata_prohibicion();
+          }
+      }
+// FIN FUNCIONES CRUD DE PROHIBICION

@@ -5,7 +5,7 @@
 	<?php  include('header.html'); 	
 	$folio = $_GET['folio'];
     include('conexion/folio.php');
-    $sql1="SELECT * FROM tipo_hipoteca "; //consulta sql
+    $sql1="SELECT * FROM tipo_prohibicion "; //consulta sql
     $result1 = $conexion->query($sql1); //usamos la conexion para dar un resultado a la variable
     $sql2="SELECT * FROM acreedor ORDER BY acreedor_abr"; //consulta sql
     $result2 = $conexion->query($sql2); //usamos la conexion para dar un resultado a la variable
@@ -19,7 +19,7 @@
 			<fieldset>
 
 				<!-- Form Name -->
-				<legend class="titulo_certificado">Ingreso de Hipoteca</legend>
+				<legend class="titulo_certificado">Ingreso de Prohibición</legend>
 
 
 
@@ -27,17 +27,17 @@
 					<div class="col-md-16">
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="folio_hip">Folio Real</label>  
+							<label class="col-md-4 control-label" for="folio_prh">Folio Real</label>  
 							<div class="col-md-2">
-								<input id="folio_hip" name="folio_hip" type="text" value="<?php echo $folio; ?>"placeholder="N° Folio Real" class="form-control input-md" required autofocus  />
+								<input id="folio_proh" name="folio_proh" type="text" value="<?php echo $folio; ?>"placeholder="N° Folio Real" class="form-control input-md" required autofocus  />
 							</div><div id="Info2"></div><div id="Info"></div>
  					        <div class="form-group">
             					<div class="col-md-offset-4 col-md-4">
-									<button type="button" id="buscar_fol_hip" name="buscar_fol_hip" class="btn btn-primary">Buscar</button>
+									<button type="button" id="buscar_fol_proh" name="buscar_fol_proh" class="btn btn-primary">Buscar</button>
 								</div>
 							</div>
 						</div><!-- fin Text input-->
-						<div id="ingreso_hipoteca" class="row" >    <!--   style="display: none;"  -->
+						<div id="ingreso_prohibicion" class="row" >    <!--   style="display: none;"  -->
 							<div class="col-md-6">
 								<!-- Select Basic -->
 								<div class="form-group">
@@ -160,7 +160,7 @@
 					<div class="col-md-6">
  
 
-						<button type="button" id="grabar_hipo" name="grabar_hipo" class="btn btn-success">Grabar</button><div id="respuesta"></div>
+						<button type="button" id="grabar_proh" name="grabar_proh" class="btn btn-success">Grabar</button><div id="respuesta"></div>
 					</div>
 					<button type="button" id="boton_propiedad" name="boton_propiedad" class="btn btn-primary" >Ingresar Propiedad</button>
 
