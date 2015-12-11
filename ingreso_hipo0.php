@@ -162,8 +162,8 @@
 
 						<button type="button" id="grabar_hipo" name="grabar_hipo" class="btn btn-success">Grabar</button><div id="respuesta"></div>
 					</div>
-					<button type="button" id="boton_propiedad" name="boton_propiedad" class="btn btn-primary" >Ingresar Propiedad</button>
-					<button type="button" id="boton_prohibicion" name="boton_prohibicion" class="btn btn-primary" >Agregar Prohibición</button>
+					<button type="button" id="boton_propiedad" name="boton_propiedad_hip" class="btn btn-primary" >Ingresar Propiedad</button>
+					<button type="button" id="boton_prohibicion_hip" name="boton_prohibicion_hip" class="btn btn-primary" >Agregar Prohibición</button>
 		
 				</div>
  

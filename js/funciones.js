@@ -336,18 +336,25 @@ jQuery(function($) {
 
 
 
-     $('#boton_propiedad').click(function(){  // Valida que un folio exista (ingreso hipoteca)
-          var folio = $('#folio').val();  
+     $('#boton_propiedad').click(function(){  // Redirige al ingreso de propiedad desde hipoteca y prohibicion
           window.location="ingreso_prop0.php";
       });
 
-     $('#boton_hipoteca').click(function(){  // Valida que un folio exista (ingreso hipoteca)
+     $('#boton_hipoteca_prop').click(function(){  // Redirige a ingreso hipoteca desde propiedad
           var folio = $('#folio').val();  
           window.location="ingreso_hipo0.php?folio="+folio;
       });
+     $('#boton_hipoteca_proh').click(function(){  // Redirige a ingreso hipoteca desde prohibicion
+          var folio = $('#folio_proh').val();  
+          window.location="ingreso_hipo0.php?folio="+folio;
+      });
 
-     $('#boton_prohibicion').click(function(){  // Valida que un folio exista (ingreso hipoteca)
+     $('#boton_prohibicion_prop').click(function(){  // Redirige a ingreso prohbición desde propiedad
           var folio = $('#folio').val();  
+          window.location="ingreso_proh0.php?folio="+folio;
+      });
+      $('#boton_prohibicion_hip').click(function(){  // Redirige a ingreso hipoteca desde hipoteca
+          var folio = $('#folio_hip').val();  
           window.location="ingreso_proh0.php?folio="+folio;
       });
 
@@ -399,7 +406,7 @@ jQuery(function($) {
         var nombre = $('#nombre_prop'+id).val();
         var fojas = $('#fojas'+id).val();
 //        var vuelta = $('input:checkbox[name=vuelta]:checked').val();
-        var vuelta = $('#vuelta'+id).val();
+        var vuelta = $('#vuelta'+id+':checked').val();
 
         var numero = $('#numero'+id).val();
         var ano = $('#ano'+id).val();

@@ -163,7 +163,7 @@
 						<button type="button" id="grabar_proh" name="grabar_proh" class="btn btn-success">Grabar</button><div id="respuesta"></div>
 					</div>
 					<button type="button" id="boton_propiedad" name="boton_propiedad" class="btn btn-primary" >Ingresar Propiedad</button>
-					<button type="button" id="boton_hipoteca" name="boton_prohibicion" class="btn btn-primary" >Agrergar hipoteca</button>
+					<button type="button" id="boton_hipoteca_proh" name="boton_hipoteca_proh" class="btn btn-primary" >Agrergar hipoteca</button>
 
 				</div>
 

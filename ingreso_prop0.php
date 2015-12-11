@@ -162,8 +162,8 @@
 
 						<button type="button" id="grabar_prop" name="grabar_prop" class="btn btn-success">Grabar</button><div id="respuesta"></div>
 					</div>
-					<button type="button" id="boton_hipoteca" name="boton_hipoteca" class="btn btn-primary" >Agregar Hipoteca</button>
-					<button type="button" id="boton_prohibicion" name="boton_prohibicion" class="btn btn-primary" onclick="click_prohibicion()">Agregar Prohibicion</button>
+					<button type="button" id="boton_hipoteca_prop" name="boton_hipoteca_prop" class="btn btn-primary" >Agregar Hipoteca</button>
+					<button type="button" id="boton_prohibicion_prop" name="boton_prohibicion_prop" class="btn btn-primary">Agregar Prohibicion</button>
 
 				</div>
 

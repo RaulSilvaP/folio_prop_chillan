@@ -63,13 +63,20 @@ while ($row = $res->fetch_assoc()) {
                 <label for="nombre_prop">Nombre</label>
                 <input type="text" class="form-control" id="nombre_prop<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['NOMBRE']; ?>">
               </div>
-              <div class="form-group">
+              <?php 
+                  if($row['VUELTA']=="v") {
+                    $vuelta_check="checked";
+                  }else{
+                    $vuelta_check="";
+                  }
+               ?>
+              <div class="form-inline">
                 <label for="fojas">Fojas</label>
-                <input type="text" class="form-control" id="fojas<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['FOJAS']; ?>">
-              </div>
-              <div class="form-group">
-                <label for="vuelta">vuelta</label>
-                <input type="text" class="form-control" id="vuelta<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['VUELTA']; ?>">
+                <input type="text" class="form-control" id="fojas<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['FOJAS']; ?>" >
+                  <label class="checkbox-inline" for="vuelta">
+                    <input type="checkbox" name="vuelta<?php echo $row['id_propiedad']; ?>" id="vuelta<?php echo $row['id_propiedad']; ?>" <?php echo $vuelta_check; ?> value="v"/> vuelta
+                  </label>
+
               </div>
               <div class="form-group">
                 <label for="numero">Número</label>
