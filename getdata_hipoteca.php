@@ -1,5 +1,6 @@
 <?php 
     $folio = $_POST['folio'];
+    $mensaje = $_GET['mensaje'];
 ?>
 <h4>Datos de Hipotecas Folio Real Nº : <?php echo $folio; ?></h4>
 
@@ -42,7 +43,7 @@ while ($row = $res->fetch_assoc()) {
    <td><?php echo $row['ANO']; ?></td>
    <td>
      <a title="Editar" id="editar" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $row['id_hipoteca']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-     <a title="Eliminar" class="btn btn-danger btn-sm" <?php echo $desabilitar; ?> onclick="deletedata_hipoteca('<?php echo $row['id_hipoteca']; ?>')" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+     <a title="<?php echo $mensaje; ?>" class="btn btn-danger btn-sm" <?php echo $desabilitar; ?> onclick="deletedata_hipoteca('<?php echo $row['id_hipoteca']; ?>','<?php echo $mensaje; ?>')" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span><?php echo $mensaje; ?></a>
 
      <!-- Modal -->
      <div class="modal fade" id="myModal<?php echo $row['id_hipoteca']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel<?php echo $row['id_hipoteca']; ?>" aria-hidden="true">
@@ -96,7 +97,7 @@ while ($row = $res->fetch_assoc()) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" onclick="updatedata_hipoteca('<?php echo $row['id_hipoteca']; ?>')" class="btn btn-primary">Grabar</button>
+            <button type="button" onclick="updatedata_hipoteca('<?php echo $row['id_hipoteca']; ?>','<?php echo $mensaje; ?>')" class="btn btn-primary">Grabar</button>
           </div>
         </div>
       </div>
