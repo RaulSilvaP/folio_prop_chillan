@@ -584,7 +584,7 @@ jQuery(function($) {
 
 //  FUNCIONES DE CRUD DEL REGISTRO DE PROHIBICION
       function viewdata_prohibicion(mensaje){
-        var folio = $('#folio_proh').val();
+        var folio = $('#folio_prh').val();
        $.ajax({ 
        type: "POST",
        url: "getdata_prohibicion.php?mensaje="+mensaje,
