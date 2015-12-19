@@ -1,5 +1,6 @@
 <?php 
     $folio = $_POST['folio'];
+    $mensaje = $_GET['mensaje'];
 ?>
 <h4>Datos grabados Folio Real Nº : <?php echo $folio; ?></h4>
 
@@ -12,7 +13,7 @@
      <th>vuelta</th>
      <th>Número</th>
      <th>Año</th>
-     <th>Acción</th>     
+     <th>Acción..</th>     
    </tr>
  </thead>
  <tbody>
@@ -42,7 +43,7 @@ while ($row = $res->fetch_assoc()) {
    <td><?php echo $row['ANO']; ?></td>
    <td>
      <a title="Editar" id="editar" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $row['id_propiedad']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-     <a title="Eliminar" class="btn btn-danger btn-sm" <?php echo $desabilitar; ?> onclick="deletedata_propiedad('<?php echo $row['id_propiedad']; ?>')" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+     <a title="<?php echo $mensaje; ?>" class="btn btn-danger btn-sm" <?php echo $desabilitar; ?> onclick="deletedata_propiedad('<?php echo $row['id_propiedad']; ?>','<?php echo $mensaje; ?>')" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span><?php echo $mensaje; ?></a>
 
      <!-- Modal -->
      <div class="modal fade" id="myModal<?php echo $row['id_propiedad']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel<?php echo $row['id_propiedad']; ?>" aria-hidden="true">

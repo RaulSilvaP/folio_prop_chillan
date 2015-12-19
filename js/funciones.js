@@ -2,7 +2,7 @@ jQuery(function($) {
 
     //funciones javascript de control de la pagina INGRESO FOLIO PROPIEDAD
 
-        $('#folio').blur(function(){  // Valida que un folio no esté repetido
+        $('#folio1').blur(function(){  // Valida que un folio no esté repetido
         $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(500);
         var folio = $(this).val();        
         var dataString = 'folio='+folio;
@@ -160,9 +160,38 @@ jQuery(function($) {
         $('#respuesta').html(data).delay(4000).fadeOut(2000);
         $('#nombre_prop').val(""); // vacia el contenido del campo nombre_prop
         $('#nombre_prop').focus();
-        viewdata_propiedad();
+        viewdata_propiedad("Eliminar");
       });
     });
+
+
+
+     $('#mod_fol_prop').click(function(){  // Valida que un folio exista (ingreso prop)
+          $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(300);
+          var folio = $('#folio').val();  
+          var dataString = 'folio='+folio;
+          $.ajax({
+            type: "POST",
+            url: "busca_folio.php",
+            data: dataString,
+            success: function(data) {
+              if(data != "existe") {
+                $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="error"/>');
+                $('#Info').fadeIn(300).html('<div id="Error" class="text-danger" ><span class="glyphicon glyphicon-remove"></span> Folio no existe</div>');
+                $('#folio').focus();
+                $('#folio').select();
+              }else{
+                $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="exito"/>');
+                $('#Info').fadeIn(300).html('<div id="Success" class="text-success" ><span class="glyphicon glyphicon-ok"></span> Folio correcto</div>');
+                viewdata_propiedad(" Eliminar");
+              }
+            }
+          });
+
+      });
+
+
+
 
 
 // GRABA NUEVO HIPOTECA
@@ -416,11 +445,11 @@ jQuery(function($) {
 
 
 //  FUNCIONES DE CRUD DEL REGISTRO DE PROPIEDAD
-      function viewdata_propiedad(){
+      function viewdata_propiedad(mensaje){
         var folio = $('#folio').val();
        $.ajax({ 
        type: "POST",
-       url: "getdata_propiedad.php",
+       url: "getdata_propiedad.php?mensaje="+mensaje,
        data: "folio="+folio
         }).done(function( data ) {
       $('#viewdata').html(data);
@@ -449,7 +478,7 @@ jQuery(function($) {
   
 
 
-      function updatedata_propiedad(str){
+      function updatedata_propiedad(str,mensaje){
         var id = str;
         var tipo = $('#tipo'+id).val();
         var nombre = $('#nombre_prop'+id).val();
@@ -469,14 +498,14 @@ jQuery(function($) {
           $('#info').html(data).fadeIn(1000);
           $('#info').html(data).delay(3000).fadeOut(1000);
           $('body').css('overflow', 'visible');  // HABILITAR EL SCROLL DE LA PÁGINA (BODY) el modal lo desabilitaba
-          viewdata_propiedad();
+          viewdata_propiedad(mensaje);
         });
       }
 
 
 
 
-      function deletedata_propiedad(str){
+      function deletedata_propiedad(str,mensaje){
           if (confirm("¿Esta seguro de eliminar el registro?") == true) {
             var id = str;
             $.ajax({
@@ -492,7 +521,7 @@ jQuery(function($) {
             var data ='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Eligió no eliminar el registro.</div>';
               $('#info').html(data).fadeIn(1000);
               $('#info').html(data).delay(2000).fadeOut(1000);
-              viewdata_propiedad();
+              viewdata_propiedad(mensaje);
           }
       }
 // FIN FUNCIONES CRUD DE PROPIEDAD
