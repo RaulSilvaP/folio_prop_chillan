@@ -3,6 +3,7 @@
     $mensaje = $_GET['mensaje'];
 ?>
 <h4>Datos grabados Folio Real Nº : <?php echo $folio; ?></h4>
+<div id="view_todos_transfieren"></div>
 
 <table class="table table-bordered table-hover">
 	<thead>
@@ -13,7 +14,7 @@
      <th>vuelta</th>
      <th>Número</th>
      <th>Año</th>
-     <th>Acción..</th>     
+     <th>Acción</th>     
    </tr>
  </thead>
  <tbody>
@@ -45,7 +46,7 @@ while ($row = $res->fetch_assoc()) {
      <a title="Editar" id="editar" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $row['id_propiedad']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
      <a title="<?php echo $mensaje; ?>" class="btn btn-danger btn-sm" <?php echo $desabilitar; ?> onclick="deletedata_propiedad('<?php echo $row['id_propiedad']; ?>','<?php echo $mensaje; ?>')" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span><?php echo $mensaje; ?></a>
 
-     <!-- Modal -->
+     <!-- Modal editar -->
      <div class="modal fade" id="myModal<?php echo $row['id_propiedad']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel<?php echo $row['id_propiedad']; ?>" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -93,11 +94,75 @@ while ($row = $res->fetch_assoc()) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" onclick="updatedata_propiedad('<?php echo $row['id_propiedad']; ?>')" class="btn btn-primary">Grabar</button>
+            <button type="button" onclick="updatedata_propiedad('<?php echo $row['id_propiedad']; ?>','<?php echo $mensaje; ?>')" class="btn btn-primary">Grabar</button>
           </div>
         </div>
       </div>
-    </div>
+    </div>   <!--   fin modal editar -->
+
+
+
+     <!-- Modal transferir -->
+     <div class="modal fade" id="Modal_t" tabindex="-1" role="dialog" aria-labelledby="ModalLabel_t<?php echo $row['id_propiedad']; ?>" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="ModalLabel_t<?php echo $row['id_propiedad']; ?>">Todos transfieren <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Nuevo propietario</h4>
+          </div>
+          <div class="modal-body">
+
+            <form>
+              <div class="form-group">
+                <label for="tipo_t">Tipo</label>
+                <input type="text" class="form-control" id="tipo_t<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['TIPO']; ?>">
+              </div>
+              <div class="form-group">
+                <label for="nombre_prop_t">Nombre</label>
+                <input type="text" class="form-control" id="nombre_prop_t<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['NOMBRE']; ?>">
+              </div>
+              <?php 
+                  if($row['VUELTA']=="v") {
+                    $vuelta_check="checked";
+                  }else{
+                    $vuelta_check="";
+                  }
+               ?>
+              <div class="form-inline">
+                <label for="fojas_t">Fojas</label>
+                <input type="text" class="form-control" id="fojas_t<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['FOJAS']; ?>" >
+                  <label class="checkbox-inline" for="vuelta_t">
+                    <input type="checkbox" name="vuelta_t<?php echo $row['id_propiedad']; ?>" id="vuelta_t<?php echo $row['id_propiedad']; ?>" <?php echo $vuelta_check; ?> value="v"/> vuelta
+                  </label>
+
+              </div>
+              <div class="form-group">
+                <label for="numero_t">Número</label>
+                <input type="text" class="form-control" id="numero_t<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['NUMERO']; ?>">
+              </div>
+              <div class="form-group">
+                <label for="ano_t">Año</label>
+                <input type="text" class="form-control" id="ano_t<?php echo $row['id_propiedad']; ?>" value="<?php echo $row['ANO']; ?>">
+              </div>
+
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" onclick="transferir_propiedad('<?php echo $row['id_propiedad']; ?>','<?php echo $mensaje; ?>')" class="btn btn-primary">Grabar</button>
+          </div>
+        </div>
+      </div>
+    </div>   <!--   fin modal transferir -->
+
+
+
+
+
+
+
+
 
   </td>
 </tr>

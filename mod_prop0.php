@@ -37,8 +37,8 @@
 						</div> 
  
 					</div>   <!-- fin div columna 1 row   -->
-
 				</div>
+				<input type="hidden" id="nombre_script" name="nombre_script" value="mod_prop0" />
 <!--
 				<div class="form-inline"> 
 					<label class="col-md-3 control-label" for="grabar"></label>

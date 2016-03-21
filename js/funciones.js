@@ -26,7 +26,7 @@ jQuery(function($) {
 
 
 
-
+ 
 
 }); 
 
@@ -189,6 +189,31 @@ jQuery(function($) {
           });
 
       });
+
+      //FUNCION TODOS TRANSFIEREN DEL REGISTRO DE PROPIEDAD
+     $('#mod_fol_prop').click(function(){  // Valida que un folio exista (ingreso prop)
+          $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(300);
+          var folio = $('#folio').val();  
+          var dataString = 'folio='+folio;
+          $.ajax({
+            type: "POST",
+            url: "busca_folio.php",
+            data: dataString,
+            success: function(data) {
+              if(data != "existe") {
+                $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="error"/>');
+                $('#Info').fadeIn(300).html('<div id="Error" class="text-danger" ><span class="glyphicon glyphicon-remove"></span> Folio no existe</div>');
+                $('#folio').focus();
+                $('#folio').select();
+              }else{
+                $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="exito"/>');
+                $('#Info').fadeIn(300).html('<div id="Success" class="text-success" ><span class="glyphicon glyphicon-ok"></span> Folio correcto</div>');
+                viewdata_propiedad(" Eliminar");
+              }
+            }
+          });
+      });
+
 
 
 
@@ -444,18 +469,21 @@ jQuery(function($) {
 
 
 
-//  FUNCIONES DE CRUD DEL REGISTRO DE PROPIEDAD
+      //  FUNCIONES DE CRUD DEL REGISTRO DE PROPIEDAD
       function viewdata_propiedad(mensaje){
-        var folio = $('#folio').val();
-       $.ajax({ 
-       type: "POST",
-       url: "getdata_propiedad.php?mensaje="+mensaje,
-       data: "folio="+folio
-        }).done(function( data ) {
-      $('#viewdata').html(data);
-
-        });
+          var folio = $('#folio').val();
+          $.ajax({ 
+             type: "POST",
+             url: "getdata_propiedad.php?mensaje="+mensaje,
+             data: "folio="+folio
+          }).done(function( data ) {
+              $('#viewdata').html(data);
+              if($('#nombre_script').val()=="mod_prop0") {
+                  $('#view_todos_transfieren').html('<button type="button" id="todos_transfieren" class="btn btn-success" data-toggle="modal" data-target="#Modal_t"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Todos transfieren</button>');
+              }
+          });
       }
+
 
 
       $('#save').click(function(){
