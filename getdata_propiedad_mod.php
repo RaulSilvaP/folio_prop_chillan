@@ -1,14 +1,32 @@
+<script>
+        $('#marcarTodo').change(function() {
+        if ($(this).is(':checked')) {
+            $("input[type=checkbox]").prop('checked', true); //todos los check
+//            $("#seleccionados input[type=checkbox]").prop('checked', true); //solo los del objeto #diasHabilitados
+        } else {
+            $("input[type=checkbox]").prop('checked', false);//todos los check
+//            $("#seleccionados input[type=checkbox]").prop('checked', false);//solo los del objeto #diasHabilitados
+        }
+    });
+
+</script>
 <?php 
     $folio = $_POST['folio'];
     $mensaje = $_GET['mensaje'];
 ?>
 <h4>Datos grabados Folio Real Nº : <?php echo $folio; ?></h4>
-<div id="view_transfieren"></div>
+        <div id="view_transfieren"></div>
 
 <table class="table table-bordered table-hover">
 	<thead>
    <tr>
-     <th>Seleccionar</th>
+     <th>
+        <p>
+          <input type="checkbox" name="marcarTodo" id="marcarTodo" >
+            <label for="marcarTodo"></label>
+          Todos</br>transfieren
+        </p>
+     </th>
      <th>Tipo</th>
      <th>Nombre</th>
      <th>Fojas</th>
@@ -37,7 +55,7 @@ while ($row = $res->fetch_assoc()) {
   ?>
  
   <tr>
-   <td><input id="check" type="checkbox"></td>
+   <td><input type="checkbox"></td>
    <td><?php echo $row['TIPO']; ?></td>
    <td><?php echo $row['NOMBRE']; ?></td>
    <td><?php echo $row['FOJAS'] ?></td>

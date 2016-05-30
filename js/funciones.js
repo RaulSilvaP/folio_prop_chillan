@@ -1,5 +1,17 @@
 jQuery(function($) {  
 
+      $('#marcarTodo').change(function() {
+        alert("hola");
+//        if ($(this).is(':checked')) {
+//            $("input[type=checkbox]").prop('checked', true); //todos los check
+//            $("#seleccionados input[type=checkbox]").prop('checked', true); //solo los del objeto #diasHabilitados
+//        } else {
+//            $("input[type=checkbox]").prop('checked', false);//todos los check
+//            $("#seleccionados input[type=checkbox]").prop('checked', false);//solo los del objeto #diasHabilitados
+//        }
+    });
+
+
     //funciones javascript de control de la pagina INGRESO FOLIO PROPIEDAD
 
         $('#folio').blur(function(){  // Valida que un folio no esté repetido
@@ -29,6 +41,10 @@ jQuery(function($) {
  
 
 }); 
+
+
+
+
 
 
     $("#fecha_inscripcion").mask("99-99-9999",{placeholder:"dd-mm-aaaa"});
@@ -714,3 +730,8 @@ jQuery(function($) {
           }
       }
 // FIN FUNCIONES CRUD DE PROHIBICION
+
+
+
+
+
