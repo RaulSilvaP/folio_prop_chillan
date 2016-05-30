@@ -8,6 +8,7 @@
 <table class="table table-bordered table-hover">
 	<thead>
    <tr>
+     <th>Seleccionar</th>
      <th>Tipo</th>
      <th>Nombre</th>
      <th>Fojas</th>
@@ -36,6 +37,7 @@ while ($row = $res->fetch_assoc()) {
   ?>
  
   <tr>
+   <td><input id="check" type="checkbox"></td>
    <td><?php echo $row['TIPO']; ?></td>
    <td><?php echo $row['NOMBRE']; ?></td>
    <td><?php echo $row['FOJAS'] ?></td>
@@ -108,7 +110,7 @@ while ($row = $res->fetch_assoc()) {
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="ModalLabel_t<?php echo $row['id_propiedad']; ?>">Todos transfieren <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Nuevo propietario</h4>
+            <h4 class="modal-title" id="ModalLabel_t<?php echo $row['id_propiedad']; ?>">Seleccionados transfieren <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Nuevo(s) propietario(s)</h4>
           </div>
           <div class="modal-body">
 

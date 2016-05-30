@@ -19,19 +19,19 @@
 			<fieldset>
 
 				<!-- Form Name -->
-				<legend class="titulo_certificado">Modificar de Propiedad</legend>
+				<legend class="titulo_certificado">Modificar Propiedad</legend>
 
 
 
 				<div class="row well clearfixq">
 					<div class="col-md-16">
 						<!-- Text input-->
-						<div class="form-inline">
+						<div class="form-group">
 							<label class="col-md-4 control-label" for="folio">Folio Real</label>  
 							<div class="col-md-2">
-								<input id="folio" name="folio" type="text" value="<?php echo $folio; ?>"placeholder="N° Folio Real" class="form-control input-md" required autofocus  />
+								<input id="folio_prop" name="folio_prop" type="text" value="<?php echo $folio; ?>"placeholder="N° Folio Real" class="form-control input-md" required autofocus  />
 							</div>
-            					<div class="col-md-2">
+            					<div class="col-md-1">
 									<button type="button" id="mod_fol_prop" name="mod_fol_prop" class="btn btn-primary">Buscar</button>
 								</div><div id="Info2"></div><div id="Info"></div>
 						</div> 

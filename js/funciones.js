@@ -2,7 +2,7 @@ jQuery(function($) {
 
     //funciones javascript de control de la pagina INGRESO FOLIO PROPIEDAD
 
-        $('#folio1').blur(function(){  // Valida que un folio no esté repetido
+        $('#folio').blur(function(){  // Valida que un folio no esté repetido
         $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(500);
         var folio = $(this).val();        
         var dataString = 'folio='+folio;
@@ -24,7 +24,7 @@ jQuery(function($) {
             }
         });
 
-
+ 
 
  
 
@@ -166,34 +166,11 @@ jQuery(function($) {
 
 
 
-     $('#mod_fol_prop').click(function(){  // Valida que un folio exista (ingreso prop)
-          $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(300);
-          var folio = $('#folio').val();  
-          var dataString = 'folio='+folio;
-          $.ajax({
-            type: "POST",
-            url: "busca_folio.php",
-            data: dataString,
-            success: function(data) {
-              if(data != "existe") {
-                $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="error"/>');
-                $('#Info').fadeIn(300).html('<div id="Error" class="text-danger" ><span class="glyphicon glyphicon-remove"></span> Folio no existe</div>');
-                $('#folio').focus();
-                $('#folio').select();
-              }else{
-                $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="exito"/>');
-                $('#Info').fadeIn(300).html('<div id="Success" class="text-success" ><span class="glyphicon glyphicon-ok"></span> Folio correcto</div>');
-                viewdata_propiedad(" Eliminar");
-              }
-            }
-          });
-
-      });
 
       //FUNCION TODOS TRANSFIEREN DEL REGISTRO DE PROPIEDAD
-     $('#mod_fol_prop').click(function(){  // Valida que un folio exista (ingreso prop)
+     $('#mod_fol_prop').click(function(){  // Valida que un folio exista (modificacion prop)
           $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(300);
-          var folio = $('#folio').val();  
+          var folio = $('#folio_prop').val();  
           var dataString = 'folio='+folio;
           $.ajax({
             type: "POST",
@@ -203,12 +180,13 @@ jQuery(function($) {
               if(data != "existe") {
                 $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="error"/>');
                 $('#Info').fadeIn(300).html('<div id="Error" class="text-danger" ><span class="glyphicon glyphicon-remove"></span> Folio no existe</div>');
-                $('#folio').focus();
-                $('#folio').select();
+                $('#folio_prop').focus();
+                $('#folio_prop').select();
               }else{
-                $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="exito"/>');
+                $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="exito"/><input type="hidden" id="folio" name="folio"/>');
                 $('#Info').fadeIn(300).html('<div id="Success" class="text-success" ><span class="glyphicon glyphicon-ok"></span> Folio correcto</div>');
-                viewdata_propiedad(" Eliminar");
+                $('#folio').val(folio);
+                viewdata_propiedad_mod(" Eliminar");
               }
             }
           });
@@ -331,7 +309,7 @@ jQuery(function($) {
 // GRABA NUEVO PROHIBICION
     $('#grabar_proh').click(function(){
        var exito = $('#info_folio').val();
-       var folio = $('#folio_proh').val();
+       var folio = $('#folio_prh').val();
        var tipo = $('#tipo').val();
        var nombre = $('#nombre').val();
        var fojas = $('#fojas').val();
@@ -377,7 +355,7 @@ jQuery(function($) {
 
      $('#buscar_fol_proh').click(function(){  // Valida que un folio exista (ingreso prohibición)
           $('#Info').html('<img src="images/loader.gif" alt="" />').fadeOut(300);
-          var folio = $('#folio_proh').val();  
+          var folio = $('#folio_prh').val();  
           $('#nombre').css("display","none");
           $('#nombre0').show();
 
@@ -390,8 +368,8 @@ jQuery(function($) {
               if(data != "existe") {
                 $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="error"/>');
                 $('#Info').fadeIn(300).html('<div id="Error" class="text-danger" ><span class="glyphicon glyphicon-remove"></span> Folio no existe</div>');
-                $('#folio_proh').focus();
-                $('#folio_proh').select();
+                $('#folio_prh').focus();
+                $('#folio_prh').select();
               }else{
                 $('#Info2').html('<input type="hidden" id="info_folio" name="info_folio" value="exito"/>');
                 $('#Info').fadeIn(300).html('<div id="Success" class="text-success" ><span class="glyphicon glyphicon-ok"></span> Folio correcto</div>');
@@ -448,7 +426,7 @@ jQuery(function($) {
           window.location="ingreso_hipo0.php?folio="+folio;
       });
      $('#boton_hipoteca_proh').click(function(){  // Redirige a ingreso hipoteca desde prohibicion
-          var folio = $('#folio_proh').val();  
+          var folio = $('#folio_prh').val();  
           window.location="ingreso_hipo0.php?folio="+folio;
       });
 
@@ -456,7 +434,7 @@ jQuery(function($) {
           var folio = $('#folio').val();  
           window.location="ingreso_proh0.php?folio="+folio;
       });
-      $('#boton_prohibicion_hip').click(function(){  // Redirige a ingreso hipoteca desde hipoteca
+      $('#boton_prohibicion_hip').click(function(){  // Redirige a ingreso prohibicion desde hipoteca
           var folio = $('#folio_hip').val();  
           window.location="ingreso_proh0.php?folio="+folio;
       });
@@ -478,11 +456,26 @@ jQuery(function($) {
              data: "folio="+folio
           }).done(function( data ) {
               $('#viewdata').html(data);
+          });
+      }
+
+
+      //  FUNCIONES DE CRUD DEL REGISTRO DE PROPIEDAD PARA LA MODIFICACION (TRASFEERENCIA)
+      function viewdata_propiedad_mod(mensaje){
+          var folio = $('#folio').val();
+          $.ajax({ 
+             type: "POST",
+             url: "getdata_propiedad_mod.php?mensaje="+mensaje,
+             data: "folio="+folio
+          }).done(function( data ) {
+              $('#viewdata').html(data);
               if($('#nombre_script').val()=="mod_prop0") {
-                  $('#view_todos_transfieren').html('<button type="button" id="todos_transfieren" class="btn btn-success" data-toggle="modal" data-target="#Modal_t"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Todos transfieren</button>');
+                  $('#view_transfieren').html('<button type="button" id="transfieren" class="btn btn-success" data-toggle="modal" data-target="#Modal_t"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Transfieren</button>');
               }
           });
       }
+
+
 
 
 

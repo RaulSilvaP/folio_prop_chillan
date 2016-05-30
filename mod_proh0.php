@@ -19,7 +19,7 @@
 			<fieldset>
 
 				<!-- Form Name -->
-				<legend class="titulo_certificado">Modificar de Prohibición</legend>
+				<legend class="titulo_certificado">Modificar Prohibición</legend>
 
 
 
@@ -30,11 +30,11 @@
 							<label class="col-md-4 control-label" for="folio_prh">Folio Real</label>  
 							<div class="col-md-2">
 								<input id="folio_prh" name="folio_prh" type="text" value="<?php echo $folio; ?>"placeholder="N° Folio Real" class="form-control input-md" required autofocus  />
-							</div><div id="Info2"></div><div id="Info"></div>
+							</div>
  					        <div class="form-group">
-            					<div class="col-md-offset-4 col-md-4">
+            					<div class="col-md-1">
 									<button type="button" id="mod_fol_prh" name="mod_fol_prh" class="btn btn-primary">Buscar</button>
-								</div>
+								</div><div id="Info2"></div><div id="Info"></div>
 							</div>
 						</div> 
  

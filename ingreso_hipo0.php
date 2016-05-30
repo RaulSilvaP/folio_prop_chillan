@@ -30,11 +30,11 @@
 							<label class="col-md-4 control-label" for="folio_hip">Folio Real</label>  
 							<div class="col-md-2">
 								<input id="folio_hip" name="folio_hip" type="text" value="<?php echo $folio; ?>"placeholder="N° Folio Real" class="form-control input-md" required autofocus  />
-							</div><div id="Info2"></div><div id="Info"></div>
+							</div>
  					        <div class="form-group">
-            					<div class="col-md-offset-4 col-md-4">
+            					<div class="col-md-1">
 									<button type="button" id="buscar_fol_hip" name="buscar_fol_hip" class="btn btn-primary">Buscar</button>
-								</div>
+								</div><div id="Info2"></div><div id="Info"></div>
 							</div>
 						</div><!-- fin Text input-->
 						<div id="ingreso_hipoteca" class="row" >    <!--   style="display: none;"  -->
