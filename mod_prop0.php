@@ -10,7 +10,7 @@
     $sql2="SELECT * FROM acreedor ORDER BY acreedor_abr"; //consulta sql
     $result2 = $conexion->query($sql2); //usamos la conexion para dar un resultado a la variable
 	?>
-</head>
+</head> 
 <body>
 	<div class="container miformulario">  
  
@@ -36,7 +36,7 @@
 								</div><div id="Info2"></div><div id="Info"></div>
 						</div> 
  
-					</div>   <!-- fin div columna 1 row   -->
+					</div>   <!--  fin div columna 1 row   -->
 				</div>
 				<input type="hidden" id="nombre_script" name="nombre_script" value="mod_prop0" />
 <!--
