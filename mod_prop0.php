@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container miformulario">  
-
+ 
 
 		<form id="form1" class="form-horizontal" method="post" >
 			<fieldset>
@@ -61,7 +61,7 @@
 
 	</div> <!-- /container -->
 	<footer class="footer">
-		<?php  include('footer.html'); ?> 
+		<?php  include('footer.php'); ?> 
 	</footer>
 
 </body>
